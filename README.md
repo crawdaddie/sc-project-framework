@@ -68,3 +68,14 @@ because it might be tedious to specify this first parameter all the time, the he
 ~someModule.exposedFunction(2); // -> [1, 2]
 ```
 ### Document support
+### Configuration
+Import stores a list of directories to search for a specified module's path.
+The first match in the list is used and the rest are ignored.
+to configure this place the following in your startup.scd file:
+```supercollider
+Import.defaultModulePath = "/path/to/your/core-modules"; // useful modules you'd like to be accessible from anywhere
+Import.defaultSoundfileLibPath = "/path/to/your/soundfile/lib";
+Import.search = [
+  [{ true /* condition for searching this directory*/ },  { "/another/project-specific/directory" }], 
+] ++ Import.search;
+```
