@@ -36,7 +36,7 @@ when initially loaded, a Module creates an environment, and its supercollider sc
 custom loaders can be specified at import time:  
 `Import("Clap.wav", loader: "soundfile")`
 will search for a soundfile at the path "Clap.wav", and create an environment bearing that path.   
-Then a script called "soundfile.scd" is found and its code is executed inside the "Clap.wav" module - see [here](./examples/clapModule.scd#30) and [here](./examples/soundfile.scd) for an example
+Then a script called "soundfile.scd" is found and its code is executed inside the "Clap.wav" module - see [here](./examples/clapModule.scd#L30) and [here](./examples/soundfile.scd) for an example
 
 ### Module functions
 functions behave in a specific way when saved in an Environment:
