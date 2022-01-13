@@ -1,0 +1,152 @@
+TITLE:: Mod
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: switchToMod
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: newVirtual
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+ARGUMENT:: extra
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: all
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: initClass
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: reloadOnSave
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: newWithinEnv
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+ARGUMENT:: env
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: new
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+ARGUMENT:: loader
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+METHOD:: loadVirtual
+(describe method here)
+
+ARGUMENT:: extra
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: asModule
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: registerModule
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: printModule
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadFromFolder
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadWithinEnv
+(describe method here)
+
+ARGUMENT:: env
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadFromSoundfile
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadFromPath
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: reload
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: withLoader
+(describe method here)
+
+ARGUMENT:: loader
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: init
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+ARGUMENT:: loader
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::

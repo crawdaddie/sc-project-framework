@@ -1,0 +1,172 @@
+TITLE:: Project
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: saveDir
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: recentProjects
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: commit
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: timingContextGui
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: assetView
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: current
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: open
+(describe method here)
+
+ARGUMENT:: payload
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: gitClient
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: defaultProjectsDir
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: canvas
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: projectFile
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadFromGit
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+ARGUMENT:: branchName
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: save
+(describe method here)
+
+ARGUMENT:: payload
+(describe argument here)
+
+ARGUMENT:: commit
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: setPaths
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: srcDir
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: player
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: randSeed
+(describe method here)
+
+ARGUMENT:: seed
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: initClass
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: dataDir
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: initFromProjectFile
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: projectDir
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: synthsFile
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: load
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: openPath
+(describe method here)
+
+ARGUMENT:: path
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
+
+

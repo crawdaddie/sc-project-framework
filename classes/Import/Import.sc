@@ -6,11 +6,11 @@ Import {
 		defaultModulePath = "/Users/adam/projects/sc/ecosystem/core-modules";
     defaultSoundfileLibPath = "/Users/adam/projects/sc/lib";
     search = [
-      [{true}, defaultModulePath],
-      [{true}, defaultSoundfileLibPath],
+      [{true}, { this.defaultModulePath }],
+      [{true}, { this.defaultSoundfileLibPath }],
     ];
 	}
-	// this class is supposed to contain utilities for resolving a symbol into a path
+	// this class contains utilities for resolving a symbol into a path
 	// used for loading an instance of Mod (module)
  	*new { arg module, expose = true, loader;
 		var mod;
@@ -117,6 +117,8 @@ Mod : Environment {
 
 		this.registerModule;
     if (loader.notNil, {
+      // specifying a loader in the import is useful for 
+      // loading a soundfile as a module (for example)
       this.withLoader(loader);
       ^this;
     });
@@ -124,12 +126,14 @@ Mod : Environment {
 		if (PathName.new(path).isFolder) {
 			this.loadFromFolder(path)
 		} {
-			var ext = path.splitext.last;
-			switch (ext,
-				"wav", { this.loadFromSoundfile },
-				"mp3", { this.loadFromSoundfile },
-				{ this.loadFromPath }
-			);
+     	this.loadFromPath;
+      // TODO: define default per-extension loaders
+			// var ext = path.splitext.last;
+			// switch (ext,
+			// 	"wav", { this.loadFromSoundfile },
+			// 	"mp3", { this.loadFromSoundfile },
+			// 	{ this.loadFromPath }
+			// );
 		};
 
 		^this
@@ -154,16 +158,9 @@ Mod : Environment {
 		^this.make { ~path.load };
 	}
 
-	loadFromSoundfile {
-		var modpath = Mod.filenameSymbol.asString.dirname +/+ "soundfilemod.scd";
-		this.make {
-			modpath.load;
-		};
-	}
-
   withLoader { arg loader;
     var loaderPath = Import.resolvePath(loader);
-    this.make {
+   this.make {
       loaderPath.load;
     }
   }

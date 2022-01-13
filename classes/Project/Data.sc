@@ -128,8 +128,8 @@ Data : Environment {
   }
 
   *deserializeNode { arg params;
-    ^params.collect({ arg val, key;
-      this.deserializeNodeValue(key, val);
+    ^().putAll(params).collect({ arg val, key;
+      if(key !== 'vol') { this.deserializeNodeValue(key, val) } { nil };
     })
   }
 }
