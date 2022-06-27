@@ -32,4 +32,8 @@
 		// just returns the module
 		^Import(this, expose: false);
 	}
+
+  load { arg ... args;
+    ^Import(this, *args);
+  }
 }

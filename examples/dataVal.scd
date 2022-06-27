@@ -1,3 +1,4 @@
+var mod = currentEnvironment;
 SynthDef("acid", {
   arg out=0, gate=1, freq=50, amp=0.2, sustain = 1;
   var env1, env2, sig;
@@ -33,6 +34,8 @@ SynthDef("acid", {
     }
   }
 );
+
+
 
 ~bass = NodeProxy.audio(s, 2).quant_(4);
 ~data.fromData; // apply saved data 

@@ -4,7 +4,7 @@
 ~exampleModule.postPrivateValues; // -> [1] 
 
 // more useful module that actually does something
-~claps = './clapModule'.asModule;
+~claps = './clapModule'.asModule; // load module but save it as ~claps rather than ~clapModule
 ~claps.pattern(
   ['dur', 'rate'], Pseq([
     [1, Rest()],
@@ -39,3 +39,8 @@ TempoClock.default.tempo = 130/60;
   'octave', 2 
 );
 
+
+
+
+'./dataVal'.load;
+~dataVal

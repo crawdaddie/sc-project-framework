@@ -42,10 +42,11 @@ Import {
       // matches paths relative to the current file 
       pathMatch = (cwd +/+ moduleString ++ "*").pathMatch;
     };
+
     search.do { arg condPath;
       var condition, checkPath;
       #condition, checkPath = condPath;
-      if (pathMatch.isEmpty && condition.value()) { pathMatch = (checkPath.value +/+ moduleString ++ "*").pathMatch };
+      if (pathMatch.isEmpty && condition.value()) { pathMatch = (checkPath.value() +/+ moduleString ++ "*").pathMatch };
     };
 
     format("module: %", pathMatch[0]).postln;
@@ -64,6 +65,7 @@ Import {
 
 Mod : Environment {
 	classvar <>all;
+  var <loaderPath;
 
 	*initClass {
 		all = IdentityDictionary.new();
@@ -82,7 +84,6 @@ Mod : Environment {
 		// check if module already exists and return that, or make a new one
  
 		var mod = all.at(path.asSymbol) !? { arg existingModule;
-			//format("module % already exists (passing previously loaded module)", path.split($/).last).postln;
 			existingModule;
 			} ?? {
 				super.new.init(path, loader);
@@ -90,6 +91,20 @@ Mod : Environment {
 
 		^mod;
 	}
+
+  *startUp { arg interpreter;
+    interpreter.preProcessor = { arg code;
+      Mod.preprocessor(code);
+    }
+  }
+
+  *preprocessor { arg code;
+    if (currentEnvironment.class == Mod) {
+      code = "var mod = currentEnvironment;\n" ++ code;
+      ^code;
+    };
+    ^code;
+  }
 
 	*newVirtual { arg path, extra;
 		var mod = all.at(path.asSymbol) !? { arg module;
@@ -104,6 +119,16 @@ Mod : Environment {
 	*newWithinEnv { arg path, env; 
 		^super.new.init(path).loadWithinEnv(env);
 	}
+//   at { arg key ... args;
+//     [key, args].postln;
+//     try {
+// 
+// 
+// 
+//     } { |error|
+//       ^super.at(key, *args);
+//     }
+  // }
 
 
 	init { arg path, loader;
@@ -159,8 +184,8 @@ Mod : Environment {
 	}
 
   withLoader { arg loader;
-    var loaderPath = Import.resolvePath(loader);
-   this.make {
+    loaderPath = Import.resolvePath(loader);
+    this.make {
       loaderPath.load;
     }
   }
@@ -228,6 +253,13 @@ Mod : Environment {
 	asModule {
 		^this
 	}
+
+  ref {
+    ^(
+      path: this['path'],
+      loaderPath: loaderPath
+    )
+  }
 }
 
 ModFunc {
@@ -239,6 +271,15 @@ ModFunc {
 		}
 	}
 }
+DataValue {
+  *new { arg key, object;
+    currentEnvironment.put(key, object);
+    // ^object;
+    ^object
+  }
+}
+D : DataValue {}
+
 
 M : ModFunc {}
 
@@ -283,15 +324,17 @@ V : ModValue {}
 	}
 }
 
-+ Object {
++ Association {
   export {
+    [this.key, this.value].postln;
+    currentEnvironment.put(this.key, this.value);
     // var oldKeys, newKeys;
     // oldKeys = currentEnvironment.keys;
     // currentEnvironment.use { this.value };
     // newKeys = currentEnvironment.keys.select({ arg k; oldKeys.includes(k).not });
-    currentEnvironment.exports !? {
-      currentEnvironment.exports
-    };
+    // currentEnvironment.exports !? {
+    //   currentEnvironment.exports
+    // };
   }
 }
 

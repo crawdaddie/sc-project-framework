@@ -1,4 +1,3 @@
-var mod = currentEnvironment; // use the mod variable instead of 'currentEnvironment' to save typing 
 var clapsf;
 SynthDef('bufplayer2', { arg 
   out = 0,

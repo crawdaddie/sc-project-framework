@@ -100,7 +100,9 @@ Data : Environment {
   }
   *serializeNodeValue { arg key, val;
     var x = case 
-      { key.asString.contains("Env") } { Env.fromArray(val) }
+      // env node values are typically wrapped as: [env.asArray]
+      // to prevent multichannel expansion
+      { key.asString.contains("Env") } { Env.fromArray(val[0]) }
       { key.asString.contains("eq_controls") } { val.clump(3).collect({ |item| [ item[0], item[1], item[2] ]}) }
       { val };
     ^x;
@@ -115,8 +117,10 @@ Data : Environment {
   }
 
   *deserializeNodeValue { arg key, val;
-    var x = case 
-        { key.asString.contains("Env") } { [val.toArray] }
+    var x;
+    [key, val].postln;
+    x = case 
+        { key.asString.contains("Env") } { [val.asArray] }
         { key.asString.contains("eq_controls") } {
           val.collect({ |item,i|
             [ item[0], item[1], item[2] ]
