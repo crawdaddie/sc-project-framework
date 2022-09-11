@@ -15,6 +15,8 @@ SynthDef("acid", {
   Out.ar(out, Pan2.ar(sig) * amp);
 }).add; // borrowed from acid otophilia
 
+~bass = NodeProxy.audio(s, 2).quant_(4);
+
 ~data = Data(
   defaults: (squelch: 2, gain: 1, res: 0.2, vol: 1),
   presets: (
@@ -34,8 +36,6 @@ SynthDef("acid", {
   }
 );
 
-~bass = NodeProxy.audio(s, 2).quant_(4);
-~data.fromData; // apply saved data 
 ~bass.play;
 
 

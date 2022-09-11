@@ -1,0 +1,10 @@
+(
+          name: "SC imports",
+       summary: "import modules like in python / js",
+        author: "adam.a.juraszek@googlemail.com",
+       version: "0.0.1",
+        schelp: "",
+          test: "",
+           url: "https://github.com/crawdaddie/sc-project-framework"
+  dependencies: [],
+)

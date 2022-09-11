@@ -37,8 +37,8 @@ Import {
     var path;
     var moduleString = module.asString;
     var pathMatch = (moduleString ++ "*" ).pathMatch;
+    var cwd = thisProcess.nowExecutingPath !? (_.dirname) ?? "./";
     if (pathMatch.isEmpty) {
-      var cwd = thisProcess.nowExecutingPath !? (_.dirname) ?? "./";
       // matches paths relative to the current file 
       pathMatch = (cwd +/+ moduleString ++ "*").pathMatch;
     };
@@ -56,7 +56,10 @@ Import {
       if (path.pathMatch.isEmpty, {
         Error("could not resolve module: % - does not contain an index.scd file".format(module)).throw
       })
-    })
+    });
+    if (path.beginsWith("./"), {
+      ^cwd +/+ path[1..];
+    });
 
 		^path;
 	}
@@ -66,6 +69,8 @@ Import {
 Mod : Environment {
 	classvar <>all;
   var <loaderPath;
+  var <userData;
+  var preSaveHooks;
 
 	*initClass {
 		all = IdentityDictionary.new();
@@ -130,8 +135,18 @@ Mod : Environment {
 //     }
   // }
 
+  dataFileLocation { arg path;
+    ^path.dirname +/+ "." ++ path.basename.replace(".scd", ".data.scd");
+  }
 
 	init { arg path, loader;
+    var userDataPath = this.dataFileLocation(path); 
+
+    if (File.exists(userDataPath), {
+      userData = userDataPath.load;
+    }, { userData = (data: ())});
+
+    preSaveHooks = [];
 
 		this.proto_((
 			path: path,
@@ -206,11 +221,11 @@ Mod : Environment {
 	}
 
 	reload {
+    this.save;
 		^this.loadFromPath
 	}
 
 	*reloadOnSave { arg path;
-    path.postln;
 		all.at(path.asSymbol) !? { arg module;
 			"reloading on save: %".format(module).postln;
 			fork {
@@ -260,6 +275,14 @@ Mod : Environment {
       loaderPath: loaderPath
     )
   }
+
+  save {
+    SaveHooks.savePath(this['path']);
+  }
+
+  addPreSaveHook { arg hook;
+    preSaveHooks = preSaveHooks.add(hook);
+  }
 }
 
 ModFunc {
@@ -278,7 +301,8 @@ DataValue {
     ^object
   }
 }
-D : DataValue {}
+
+// D : DataValue {}
 
 
 M : ModFunc {}
